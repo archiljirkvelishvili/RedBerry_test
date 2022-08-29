@@ -1,0 +1,43 @@
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: local('HelveticaNeue'), url("../../assets/fonts/HelveticaNeue.ttc") format('truetype');
+  }
+.home_page {
+    font-family: 'HelveticaNeue', Arial, sans-serif;
+    margin: auto;
+    width: 780px;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    row-gap: 26px;
+    justify-items: center;
+    align-items: center;
+    align-content: space-around;
+}
+.logo{
+    width: 112px;
+    height: 18px;
+}
+.img {
+    width: 780px;
+    height: 480px;
+}
+.button {
+    text-decoration: none;
+    background-color: #62A1EB;
+    color: #FFFFFF;
+    width: 387px;
+    height: 60px;
+    font-size: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.first{
+    align-self: end;
+}
+.second{
+    align-self: start;
+}
+
