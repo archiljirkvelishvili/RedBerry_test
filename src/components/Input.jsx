@@ -7,21 +7,21 @@ export default function Input(props){
     return(
         props.type==="text" ?
             <div className={props.name}>
-                <label htmlFor={props.name}>{props.label}</label>
+                <label className="label" htmlFor={props.name}>{props.label}</label>
                 <input type={props.type} onChange={props.onChange} name={props.name} value={props.inputvalue} required/>
-                <p>მინიმუმ 2 სიმბოლო, ქართული ასოები</p>
+                <p className="comment">მინიმუმ 2 სიმბოლო, ქართული ასოები</p>
             </div>
         : props.type==="email" ?
             <div className={props.name}>
-                <label htmlFor={props.name}>{props.label}</label>
+                <label className="label" htmlFor={props.name}>{props.label}</label>
                 <input type={props.type} onChange={props.onChange} name={props.name} value={props.inputvalue} pattern=".+@redberry.ge" required/>
-                <p>უნდა მთავრდებოდეს @redberry.ge-ით</p>
+                <p className="comment">უნდა მთავრდებოდეს @redberry.ge-ით</p>
             </div>
         :  props.type==="tel" ?
             <div className={props.name}>
-                <label htmlFor={props.name}>{props.label}</label>
+                <label className="label" htmlFor={props.name}>{props.label}</label>
                 <input type={props.type} onChange={props.onChange} name={props.name} value={props.inputvalue} pattern="^[\+]?-[0-9]{3}-[0-9]{2}-[0-9]{2}" required/>
-                <p>უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</p>
+                <p className="comment">უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</p>
             </div> 
         : props.type==="select" ?
             <div className={props.name}>

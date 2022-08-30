@@ -1,78 +1,194 @@
+@font-face {
+    font-family: 'HelveticaNeue';
+    src: local('HelveticaNeue'), url("../../assets/fonts/HelveticaNeue.ttc") format('truetype');
+  }
+
 .register_person_wrapper{
     width: 100%;
     height: 100%;
     background-color: whitesmoke;
+    font-family: 'HelveticaNeue', Arial, sans-serif;
 }
 
 
 .register_person{
     margin: auto;
-    width: 60%;
-    height: 100%;
+    width: 64%;
+    height: 100vh;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 7fr 2fr;
-    align-items: center;
-    justify-items: center;
-    
+    grid-template-rows: auto 1fr auto;
+    align-content: space-between;
 }
 
-.register_person h2{
-    font-size: 18px;
-    
+.header{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+    height: 11vh;
+    grid-column-gap: 10%;
 }
 .active{
+    justify-self: end;
+    font-size: 17px;
     position: relative;
 }
 
-.active::after{
-    content : "";
+.active::before {
+    content: '';
+    display: block;
     position: absolute;
+    bottom: -20px;
+    width: 80%;
     left: 10%;
-    top: 150%;
-    height  : 1px;
-    width   : 80%;
-    border-bottom: 2px solid #000000;
+    border-top: 2px solid black
+
 }
 
 
-.register_person form {
+.inctive{
+    justify-self: start;
+    font-size: 17px;
+}
+
+.register_person_main {
     background-color: #ffffff;
-    height: 100%;
     width: 100%;
-    border-radius: 10px;
+    border-radius: 18px;
+    padding: 9% 15% 4.5% 15%;
+}
+
+.register_person_form{
+    height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(6, 1fr);
-    align-content:space-around;
+    grid-template-rows: repeat(6, auto);
+    grid-template-areas: 
+        "name  surname "
+        "teams teams"
+        "positions positions"
+        "email  email"
+        "tel  tel"
+        ". button";
+    align-content: space-between;
     align-items: center;
+}
+.register_person_form .name {
+    grid-area: name
+}
+
+.register_person_form .surname {
+    grid-area: surname
+}
+
+
+.register_person_form .teams {
+    grid-area: teams
+}
+
+.register_person_form .positions {
+    grid-area: positions
+}
+
+.register_person_form .email {
+    grid-area: email
+}
+
+.register_person_form .tel {
+    grid-area: tel
+}
+
+.register_person_form .form_button {
+    grid-area: button
+}
+
+
+
+
+.name, .surname, .tel, .email, .teams, .positions {
+    grid-area: name;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    padding: 0px 14px 0 14px;
+}
+
+
+.label{
+    font-size: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.comment{
+    color: #2E2E2E;
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+
+input[type="text"]{
+    line-height: 40px;
+    border-radius: 8px;
+    border: 1.8px solid #8AC0E2;
+    box-sizing: border-box;
+    padding-left: 10px;
+    font-size: 13px;
+}
+
+input[type="tel"]{
+    line-height: 40px;
+    border-radius: 8px;
+    border: 1.8px solid #8AC0E2;
+    padding-left: 10px;
+    font-size: 13px;
+}
+
+input[type="email"]{
+    line-height: 40px;
+    border-radius: 8px;
+    border: 1.8px solid #8AC0E2;
+    padding-left: 10px;
+    font-size: 13px;
+}
+
+select {
+    height: 44px;  
+    background-color: #EBEBEB;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px 5px 10px;
+    font-weight: bold;
+    font-size: 15px;
+}
+select option{
+    background-color: white;
+    border: none;
+    border-radius: 8px;
+}
+
+form button{
+    width: 176px;
+    height: 40px;
+    background-color: #62A1EB;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    justify-self: end;
+    margin-right: 14px;
+}
+form button:hover{
+    cursor: pointer;
+}
+
+.footer_logo{
+    display: grid;
+    align-content: center;
     justify-content: center;
-    padding-top: 50px;
 }
-
-
-
-.register_person form .name{
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    align-items: center;
-    row-gap: 5px;
-    padding: 0 24px 0 24px;
-}
-
-.register_person form .name label{
-    font-size: 14px;
-    line-height: 14px;
-
-}
-.register_person form .name input{
-    border: 1px solid #8AC0E2;
-    border-radius: 5px;
-    height: 20px;
-}
-.register_person form .name p{
-    font-size: 10px;
-    line-height: 12px;
+.footer_logo img {
+    width: 60px;
+    height: 60px;
+    margin: 40px;
 }
 
 
@@ -80,41 +196,3 @@
 
 
 
-.register_person form .surname{
-    display: grid;
-    grid-template-rows: repeat(3, 1fr);
-    align-items: center;
-    row-gap: 5px;
-    padding: 0 24px 0 24px;
-}
-
-
-
-
-
-
-
-
-.register_person form .teams{
-    grid-column: 1 / -1;
-}
-
-.register_person form .positions{
-    grid-column: 1 / -1;
-}
-
-.register_person form .email{
-    grid-column: 1 / -1;
-}
-
-.register_person form .tel{
-    grid-column: 1 / -1;
-}
-
-
-.register_person img {
-    width: 50px;
-    height: 50px;
-    justify-self: center;
-    align-self: center;
-}
