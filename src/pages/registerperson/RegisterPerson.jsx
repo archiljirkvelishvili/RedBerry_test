@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {useNavigate} from "react-router-dom"
 
 import Input from "../../components/Input"
+import Header from"../../components/Header"
 import useFetch from "../../Hooks/useFetch"
 import logo_2 from "../../assets/LOGO_2.png"
 import "./registerperson.css"
@@ -20,10 +21,7 @@ export default function RegisterPerson(){
     return(
         <div className="register_person_wrapper">
 <           div className="register_person">
-                <header className="header">
-                    <h2 className="active">თანამშრომლის ინფო</h2>
-                    <h2 className="inctive">ლეპტოპის მახასიათებლები</h2>
-                </header>
+                <Header page="person" />
                 <main className="register_person_main">
                     <form className="register_person_form">
                         <Input type="text" name="name" label="სახელი" inputvalue={formData.name} onChange={changeHandler} data=""/>
