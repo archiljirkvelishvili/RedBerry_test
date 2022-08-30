@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 
 import useFetch from "../../Hooks/useFetch";
 import Header from"../../components/Header"
+import Footer from"../../components/Footer"
 
 export default function RegisterComp(){
     const {brands, cpus} = useFetch()
@@ -12,6 +13,7 @@ export default function RegisterComp(){
             <Header />
             <Link to="/registerperson" > უკან დაბრუნება </Link>
             <p>RegisterComp</p>
+            <Footer />
         </div>
         
     )

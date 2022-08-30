@@ -3,8 +3,8 @@ import {useNavigate} from "react-router-dom"
 
 import Input from "../../components/Input"
 import Header from"../../components/Header"
+import Footer from"../../components/Footer"
 import useFetch from "../../Hooks/useFetch"
-import logo_2 from "../../assets/LOGO_2.png"
 import "./registerperson.css"
 
 export default function RegisterPerson(){
@@ -33,9 +33,7 @@ export default function RegisterPerson(){
                         <button onClick={() => navigate("/registercomp")} className="form_button" > შემდეგი </button>
                     </form>
                 </main>
-                <footer className="footer_logo">
-                    <img src={logo_2} alt="ლოგო_2"/>
-                </footer>
+                <Footer />
             </div>
         </div>
         
