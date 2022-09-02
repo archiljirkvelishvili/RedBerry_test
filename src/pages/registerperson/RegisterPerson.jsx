@@ -21,7 +21,7 @@ export default function RegisterPerson(){
     const  {teams, positions} = useFetch()
     return(
         <div className="register_person_wrapper">
-            <img src={back_img} class="back_click" onClick={() => navigate("/")}/>
+            <img src={back_img} className="back_click" onClick={() => navigate("/")}/>
 <           div className="register_person">
                 <Header page="person" />
                 <main className="register_person_main">

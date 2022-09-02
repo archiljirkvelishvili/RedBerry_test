@@ -18,9 +18,9 @@ function App() {
           <Route path="/" element= {<Home />} />
           <Route path="/registerperson" element= {<RegisterPerson />} />
           <Route path="/registercomp" element= {<RegisterComp/>} />
-          <Route path='/success' elemet={<Success />} />
+          <Route path='/success' element={<Success />} />
           <Route path="/list" element= {<List />} />
-          <Route path="/listditailed" element={<ListDetailed />} />
+          <Route path="/listdetailed" element={<ListDetailed />} />
       </Routes>
     </div>
   );

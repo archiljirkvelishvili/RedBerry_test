@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import {Link} from "react-router-dom"
 import {useNavigate} from "react-router-dom"
 
@@ -15,7 +15,7 @@ export default function RegisterComp(){
     const [formDatComp, setFormDataComp] = useState({file: "", compName: "", brands: "", cpus: "", cpuCores: "", cpuThread: "", ram: "", memoType: "", conditions: "", date: "", price: ""})
    
     const {brands, cpus} = useFetch()
-    const reff = useRef()
+    
     function changeHandler(e){
         // e.preventDefault()
         setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.value}))
@@ -34,7 +34,7 @@ export default function RegisterComp(){
 
     return(
         <div className="register_comp_wrapper">
-            <img src={back_img} class="back_click" onClick={() => navigateComp("/registerperson")}/>
+            <img src={back_img} className="back_click" onClick={() => navigateComp("/registerperson")}/>
             <div className="register_comp">
                 <Header page="comp"/>
                 <main className="register_comp_main">
