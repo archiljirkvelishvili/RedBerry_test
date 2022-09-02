@@ -6,12 +6,13 @@ import Header from"../../components/Header"
 import Footer from"../../components/Footer"
 import useFetch from "../../Hooks/useFetch"
 import "./registerperson.css"
+import back_img from "../../assets/back_click.png"
 
 export default function RegisterPerson(){
     const navigate = useNavigate()
     
     const [formData, setFormData] = useState({name: "", surname: "", email: "", tel: "", teams: "", positions: ""})
-
+    
     function changeHandler(e){
         e.preventDefault()
         setFormData(prev => ({...prev, [e.target.name]: e.target.value}))
@@ -20,6 +21,7 @@ export default function RegisterPerson(){
     const  {teams, positions} = useFetch()
     return(
         <div className="register_person_wrapper">
+            <img src={back_img} class="back_click" onClick={() => navigate("/")}/>
 <           div className="register_person">
                 <Header page="person" />
                 <main className="register_person_main">
@@ -27,7 +29,7 @@ export default function RegisterPerson(){
                         <Input type="text" name="name" label="სახელი" inputvalue={formData.name} onChange={changeHandler} data=""/>
                         <Input type="text" name="surname" label="გვარი" inputvalue={formData.surname} onChange={changeHandler} data=""/>
                         {teams && <Input type="select" name="teams" label="თიმი" inputvalue={formData.teams} onChange={changeHandler} data={teams}/>}
-                        {positions && <Input type="select" name="positions" label="პოზიცია" inputvalue={formData.teams} onChange={changeHandler} data={positions}/>}
+                        {positions && <Input type="select" name="positions" label="პოზიცია" inputvalue={formData.positions} onChange={changeHandler} data={positions}/>}
                         <Input type="email" name="email" label="მეილი" inputvalue={formData.email} onChange={changeHandler} data=""/>
                         <Input type="tel" name="tel" label="ტელეფონის ნომერი" inputvalue={formData.tel} onChange={changeHandler} data=""/>
                         <button onClick={() => navigate("/registercomp")} className="form_button" > შემდეგი </button>
@@ -35,7 +37,6 @@ export default function RegisterPerson(){
                 </main>
                 <Footer />
             </div>
-        </div>
-        
+        </div>  
     )
 }

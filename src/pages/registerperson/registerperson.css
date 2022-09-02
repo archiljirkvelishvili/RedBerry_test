@@ -106,8 +106,8 @@
 
 
 .name, .surname, .tel, .email, .teams, .positions {
-    grid-area: name;
     display: grid;
+    grid-template-columns: 1fr;
     grid-template-rows: auto 1fr auto;
     padding: 0px 14px 0 14px;
 }
@@ -123,6 +123,7 @@
     color: #2E2E2E;
     font-size: 11px;
     margin-top: 2px;
+    height: 11px;
 }
 
 
@@ -130,7 +131,6 @@ input[type="text"]{
     line-height: 40px;
     border-radius: 8px;
     border: 1.8px solid #8AC0E2;
-    box-sizing: border-box;
     padding-left: 10px;
     font-size: 13px;
 }
@@ -159,6 +159,7 @@ select {
     padding: 5px 10px 5px 10px;
     font-weight: bold;
     font-size: 15px;
+    margin-top: 10px;
 }
 select option{
     background-color: white;
@@ -175,6 +176,7 @@ form button{
     border-radius: 8px;
     justify-self: end;
     margin-right: 14px;
+    font-size: 16px;
 }
 form button:hover{
     cursor: pointer;
