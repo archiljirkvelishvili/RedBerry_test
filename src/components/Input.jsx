@@ -4,8 +4,8 @@ import React from "react"
 
 export default function Input(props){
     const {data} = props.data
-    const options = data && data.map(item => <option key={item.id} value={item.name} > {item.name} </option>)
-
+    const focused = props.type === "text" && props.focused
+    const options = data && data.map(item => <option key={item.id} value={item.name}> {item.name} </option>)
     const radios = {
         memoType: ["SSD", "HDD"],
         condition: ["ახალი", "მეორადი"]
@@ -35,32 +35,77 @@ export default function Input(props){
                 {props.com==="brand" ? 
                     <>
                         <label className="label" htmlFor={props.name}>{props.label}</label>
-                        <input type={props.type} onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} required/>
+                        <input 
+                            type={props.type} 
+                            onChange={props.onChange} 
+                            name={props.name} 
+                            id={props.name} 
+                            value={props.inputvalue} 
+                            pattern='^[a-zA-Z0-9!@#$%^&*()_+\-=]*$'
+                            required
+                            onBlur = {props.blur}
+                            focused={focused}
+                        />
                         <p className="comment">ლათინური ასოები, ციფრები, !@#$%^&*()_+=</p> 
                     </>
                 :props.com==="num" ? 
                     <>
                         <label className="label" htmlFor={props.name}>{props.label}</label>
-                        <input type={props.type} onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} required/>
+                        <input 
+                            type={props.type} 
+                            onChange={props.onChange} 
+                            name={props.name} 
+                            id={props.name} 
+                            value={props.inputvalue}
+                            pattern="^[0-9]*$"
+                            required
+                            onBlur = {props.blur}
+                            focused={focused}
+                            />
                         <p className="comment">მხოლოდ ციფრები</p>
                     </>
                 :
-                <>
-                    <label className="label" htmlFor={props.name}>{props.label}</label>
-                    <input type={props.type} onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} required/>
-                    <p className="comment">მინიმუმ 2 სიმბოლო, ქართული ასოები</p>
-                </>}
+                    <>
+                        <label className="label" htmlFor={props.name}>{props.label}</label>
+                        <input 
+                            type={props.type} 
+                            onChange={props.onChange} 
+                            name={props.name} 
+                            id={props.name} 
+                            value={props.inputvalue} 
+                            pattern= "^[აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ]{2,}$"
+                            onBlur={props.blur}
+                            focused={focused.toString()}
+                            required
+                            />
+                        <p className="comment">მინიმუმ 2 სიმბოლო, ქართული ასოები</p>
+                    </>
+                }
             </div>
         : props.type==="email" ?
             <div className={props.name}>
                 <label className="label" htmlFor={props.name}>{props.label}</label>
-                <input type={props.type} onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} pattern=".+@redberry.ge" required/>
+                <input 
+                    type={props.type} 
+                    onChange={props.onChange} 
+                    name={props.name} 
+                    id={props.name} 
+                    value={props.inputvalue} 
+                    pattern=".+@redberry.ge" 
+                    required/>
                 <p className="comment">უნდა მთავრდებოდეს @redberry.ge-ით</p>
             </div>
         :  props.type==="tel" ?
             <div className={props.name}>
                 <label className="label" htmlFor={props.name}>{props.label}</label>
-                <input type={props.type} onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} pattern="^[\+]?-[0-9]{3}-[0-9]{2}-[0-9]{2}" required/>
+                <input 
+                    type={props.type} 
+                    onChange={props.onChange} 
+                    name={props.name} 
+                    id={props.name} 
+                    value={props.inputvalue} 
+                    pattern="^^(\+?995)?(79\d{7}|5\d{8})$" 
+                    required/>
                 <p className="comment">უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</p>
             </div> 
         : props.type==="select" ?
@@ -90,7 +135,7 @@ export default function Input(props){
         :  props.type==="date" ?
         <div className={props.name}>
             <label className="label" htmlFor={props.name}>{props.label}</label>
-            <input  type={props.type}onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} placeholder="დდ / თთ / წწწწ" required/>
+            <input  type={props.type}onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} placeholder="დდ / თთ / წწწწ" />
             <p className="comment"></p>
         </div>     
         :<p> ouch </p>

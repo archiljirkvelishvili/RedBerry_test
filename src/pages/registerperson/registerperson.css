@@ -194,7 +194,26 @@ form button:hover{
 }
 
 
+input:invalid[focused|="true"][name|="name"] ~ p{
+    color: red
+}
+
+input:invalid[focused|="true"][name|="name"] {
+    border: 1.8px solid red
+}
 
 
+input:invalid[focused|="true"][name|="surname"] ~ p{
+    color: red
+}
 
+input:invalid[focused|="true"][name|="surname"] {
+    border: 1.8px solid red
+}
+/* input:invalid[focused="true"][name="surname"] ~ p{
+    color: red
+}
 
+input:invalid[focused="true"][name="surname"] {
+    border: 1.8px solid red
+} */

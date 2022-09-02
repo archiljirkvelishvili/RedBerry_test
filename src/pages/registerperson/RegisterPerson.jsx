@@ -10,9 +10,13 @@ import back_img from "../../assets/back_click.png"
 
 export default function RegisterPerson(){
     const navigate = useNavigate()
-    
     const [formData, setFormData] = useState({name: "", surname: "", email: "", tel: "", teams: "", positions: ""})
-    
+    const [focuse, setFocuse] = useState(false)
+
+    function hanldeFocus(e){
+        setFocuse(true)
+    }
+
     function changeHandler(e){
         e.preventDefault()
         setFormData(prev => ({...prev, [e.target.name]: e.target.value}))
@@ -26,8 +30,8 @@ export default function RegisterPerson(){
                 <Header page="person" />
                 <main className="register_person_main">
                     <form className="register_person_form">
-                        <Input type="text" name="name" label="სახელი" inputvalue={formData.name} onChange={changeHandler} data=""/>
-                        <Input type="text" name="surname" label="გვარი" inputvalue={formData.surname} onChange={changeHandler} data=""/>
+                        <Input type="text" name="name" label="სახელი" inputvalue={formData.name} onChange={changeHandler} data="" blur={hanldeFocus} focused={focuse}/>
+                        <Input type="text" name="surname" label="გვარი" inputvalue={formData.surname} onChange={changeHandler} data="" blur={hanldeFocus} focused={focuse}/>
                         {teams && <Input type="select" name="teams" label="თიმი" inputvalue={formData.teams} onChange={changeHandler} data={teams}/>}
                         {positions && <Input type="select" name="positions" label="პოზიცია" inputvalue={formData.positions} onChange={changeHandler} data={positions}/>}
                         <Input type="email" name="email" label="მეილი" inputvalue={formData.email} onChange={changeHandler} data=""/>
