@@ -3,19 +3,13 @@ import React from "react"
 
 
 export default function Input(props){
-    
     const {data} = props.data
-    
-    
     const options = data && data.map(item => <option key={item.id} value={item.name} > {item.name} </option>)
-   
-    
+
     const radios = {
         memoType: ["SSD", "HDD"],
         condition: ["ახალი", "მეორადი"]
     }
-
-    
 
     const radioFileds = props.name==="memoType" ? 
     radios.memoType.map(item => (
@@ -37,11 +31,25 @@ export default function Input(props){
     return(
         props.type==="text" ?
             <div className={props.name}>
-                <label className="label" htmlFor={props.name}>{props.label}</label>
-                <input type={props.type} onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} required/>
-                {props.com==="brand" ? <p className="comment">ლათინური ასოები, ციფრები, !@#$%^&*()_+=</p> 
-                :props.com==="num" ? <p className="comment">მხოლოდ ციფრები</p>
-                :<p className="comment">მინიმუმ 2 სიმბოლო, ქართული ასოები</p>}
+                
+                {props.com==="brand" ? 
+                    <>
+                        <label className="label" htmlFor={props.name}>{props.label}</label>
+                        <input type={props.type} onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} required/>
+                        <p className="comment">ლათინური ასოები, ციფრები, !@#$%^&*()_+=</p> 
+                    </>
+                :props.com==="num" ? 
+                    <>
+                        <label className="label" htmlFor={props.name}>{props.label}</label>
+                        <input type={props.type} onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} required/>
+                        <p className="comment">მხოლოდ ციფრები</p>
+                    </>
+                :
+                <>
+                    <label className="label" htmlFor={props.name}>{props.label}</label>
+                    <input type={props.type} onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} required/>
+                    <p className="comment">მინიმუმ 2 სიმბოლო, ქართული ასოები</p>
+                </>}
             </div>
         : props.type==="email" ?
             <div className={props.name}>
@@ -89,5 +97,3 @@ export default function Input(props){
          
     )
 }
-
-// value={props.inputvalue[props.name]}

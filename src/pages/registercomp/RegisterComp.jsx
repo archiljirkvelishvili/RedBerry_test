@@ -11,7 +11,6 @@ import back_img from "../../assets/back_click.png"
 
 
 export default function RegisterComp(){
-
     const navigateComp = useNavigate()
     const [formDatComp, setFormDataComp] = useState({file: "", compName: "", brands: "", cpus: "", cpuCores: "", cpuThread: "", ram: "", memoType: "", conditions: "", date: "", price: ""})
    
@@ -22,22 +21,17 @@ export default function RegisterComp(){
         setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.value}))
     }
 
-
     function allowDrop(event) {
         event.preventDefault();
         console.log(event)
-      }
+    }
       
-      function drop(event) {
-        event.stopPropagation();
-        event.preventDefault();
-        console.log(event.target.files[0])
-      }
+    function drop(event) {
+    event.stopPropagation();
+    event.preventDefault();
+    console.log(event.target.files[0])
+    }
 
- 
-
-    
-    
     return(
         <div className="register_comp_wrapper">
             <img src={back_img} class="back_click" onClick={() => navigateComp("/registerperson")}/>
