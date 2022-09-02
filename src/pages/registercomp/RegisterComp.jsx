@@ -34,7 +34,7 @@ export default function RegisterComp(){
 
     return(
         <div className="register_comp_wrapper">
-            <img src={back_img} className="back_click" onClick={() => navigateComp("/registerperson")}/>
+            <img src={back_img} className="back_click" onClick={() => navigateComp("/registerperson")} alt="back"/>
             <div className="register_comp">
                 <Header page="comp"/>
                 <main className="register_comp_main">

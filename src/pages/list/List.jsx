@@ -30,7 +30,7 @@ export default function List(props){
                     <div className="list_content">
                         <p className="lsit_item_name">სახელი გვარი</p>
                         <p className="lsit_item_comp"> Pentium II </p>
-                        <a href="#">მეტის ნახვა</a>
+                        <a href="/">მეტის ნახვა</a>
                     </div>
                 </div>
               
