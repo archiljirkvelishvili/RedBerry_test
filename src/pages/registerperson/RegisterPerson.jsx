@@ -11,10 +11,11 @@ import back_img from "../../assets/back_click.png"
 export default function RegisterPerson(){
     const navigate = useNavigate()
     const [formData, setFormData] = useState({name: "", surname: "", email: "", tel: "", teams: "", positions: ""})
-    const [focuse, setFocuse] = useState(false)
-
+    const [focuse, setFocuse] = useState({name: "false", surname: "false", email: "false", tel: "false", teams: "false", positions: "false"})
+    const  {teams, positions} = useFetch()
     function hanldeFocus(e){
-        setFocuse(true)
+        e.preventDefault()
+        setFocuse(prev => ({...prev, [e.target.name]: "true"}))
     }
 
     function changeHandler(e){
@@ -22,21 +23,30 @@ export default function RegisterPerson(){
         setFormData(prev => ({...prev, [e.target.name]: e.target.value}))
     }
 
-    const  {teams, positions} = useFetch()
+    function handleSubmit(e){
+        e.preventDefault()
+        for (const value of Object.entries(focuse)){
+        if(value[1] === "false")
+            setFocuse(prev => ({...prev, [value[0]]: "true"}))
+        }
+        console.log(e)
+    }
+
+
     return(
         <div className="register_person_wrapper">
             <img src={back_img} className="back_click" onClick={() => navigate("/")} alt="back"/>
 <           div className="register_person">
                 <Header page="person" />
                 <main className="register_person_main">
-                    <form className="register_person_form">
-                        <Input type="text" name="name" label="სახელი" inputvalue={formData.name} onChange={changeHandler} data="" blur={hanldeFocus} focused={focuse}/>
-                        <Input type="text" name="surname" label="გვარი" inputvalue={formData.surname} onChange={changeHandler} data="" blur={hanldeFocus} focused={focuse}/>
-                        {teams && <Input type="select" name="teams" label="თიმი" inputvalue={formData.teams} onChange={changeHandler} data={teams}/>}
-                        {positions && <Input type="select" name="positions" label="პოზიცია" inputvalue={formData.positions} onChange={changeHandler} data={positions}/>}
-                        <Input type="email" name="email" label="მეილი" inputvalue={formData.email} onChange={changeHandler} data=""/>
-                        <Input type="tel" name="tel" label="ტელეფონის ნომერი" inputvalue={formData.tel} onChange={changeHandler} data=""/>
-                        <button onClick={() => navigate("/registercomp")} className="form_button" > შემდეგი </button>
+                    <form className="register_person_form" onSubmit={handleSubmit} noValidate>
+                        <Input type="text" name="name" label="სახელი" inputvalue={formData.name} onChange={changeHandler} data="" blur={hanldeFocus} focused={focuse.name}/>
+                        <Input type="text" name="surname" label="გვარი" inputvalue={formData.surname} onChange={changeHandler} data="" blur={hanldeFocus} focused={focuse.surname}/>
+                        {teams && <Input type="select" name="teams" label="თიმი" inputvalue={formData.teams} onChange={changeHandler} data={teams} blur={hanldeFocus} focused={focuse.teams}/>}
+                        {positions && <Input type="select" name="positions" label="პოზიცია" inputvalue={formData.positions} onChange={changeHandler} data={positions} blur={hanldeFocus} focused={focuse.positions}/>}
+                        <Input type="email" name="email" label="მეილი" inputvalue={formData.email} onChange={changeHandler} data="" blur={hanldeFocus} focused={focuse.email}/>
+                        <Input type="tel" name="tel" label="ტელეფონის ნომერი" inputvalue={formData.tel} onChange={changeHandler} data="" blur={hanldeFocus} focused={focuse.tel}/>
+                        <button className="form_button"> შემდეგი </button>
                     </form>
                 </main>
                 <Footer />
@@ -44,3 +54,5 @@ export default function RegisterPerson(){
         </div>  
     )
 }
+
+// onClick={() => navigate("/registercomp")}

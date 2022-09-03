@@ -194,26 +194,39 @@ form button:hover{
 }
 
 
-input:invalid[focused|="true"][name|="name"] ~ p{
+input:invalid[focused^="true"][name^="name"] ~ p{
     color: red
 }
 
-input:invalid[focused|="true"][name|="name"] {
+input:invalid[focused^="true"][name^="name"] {
     border: 1.8px solid red
 }
 
 
-input:invalid[focused|="true"][name|="surname"] ~ p{
+input:invalid[focused^="true"][name^="surname"] ~ p{
     color: red
 }
 
-input:invalid[focused|="true"][name|="surname"] {
+input:invalid[focused^="true"][name^="surname"] {
     border: 1.8px solid red
 }
-/* input:invalid[focused="true"][name="surname"] ~ p{
+
+input:invalid[focused="true"][name="email"] ~ p{
     color: red
 }
 
-input:invalid[focused="true"][name="surname"] {
+input:invalid[focused="true"][name="email"] {
     border: 1.8px solid red
-} */
+}
+
+input:invalid[focused="true"][name="tel"] ~ p{
+    color: red
+}
+
+input:invalid[focused="true"][name="tel"] {
+    border: 1.8px solid red
+}
+
+select:invalid[focused="true"]{
+    border: 1px solid red;
+}
