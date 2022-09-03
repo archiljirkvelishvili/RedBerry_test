@@ -110,6 +110,7 @@ export default function Input(props){
                 <p className="upload_info">ჩააგდე ან ატვირთე ლეპტოპის ფოტო</p>
                 <input type={props.type} name={props.name} onChange={props.onChange} placeholder="ატვირთე" id={props.name} required/>           
                 <label htmlFor={props.name} className="file_button">ატვირთე</label>
+                {props.image && <img src={props.image} alt=""  />}
             </div>
     
         :props.type==="radio" ?

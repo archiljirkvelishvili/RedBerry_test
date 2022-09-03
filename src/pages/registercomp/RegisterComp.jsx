@@ -17,12 +17,30 @@ export default function RegisterComp(){
     const {brands, cpus} = useFetch()
     const [validation, setValidation] = useState({memoType:"false", conditions:"fasle", file:"false"})
 
-    
+    console.log(formDatComp)
     function changeHandler(e){
-        // e.preventDefault()
         (e.target.name==="memoType" || e.target.name==="conditions" || e.target.name==="file") && setValidation(prev => ({...prev, [e.target.name]: "false"}))
-    
-        e.target.name!=="file" ? setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.value})) : setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.files[0]}))
+        e.target.name!=="file" ? setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.value})) : fileloader(e.target.files[0])
+    }
+
+    const fileloader = async (a) => {
+        const base64 = await convertTo64(a)
+        setFormDataComp(prev => ({...prev, file: base64}))
+    }
+
+
+    function convertTo64(f){
+        return new Promise((resolve, reject) =>{
+            const fileReader = new FileReader()
+            fileReader.readAsDataURL(f) 
+
+            fileReader.onload = () => {
+                resolve(fileReader.result)
+            }
+            fileReader.onerror =(error) => {
+                reject(error)
+            }
+        })
         
     }
 
@@ -36,6 +54,9 @@ export default function RegisterComp(){
         localStorage.setItem("formDatComp",JSON.stringify(formDatComp))
         // localStorage.clear()
     },[formDatComp])
+
+
+    
 
     function handleSubmit(e){
         e.preventDefault()
@@ -71,7 +92,7 @@ export default function RegisterComp(){
                 <Header page="comp"/>
                 <main className="register_comp_main">
                     <form className="register_comp_form" onSubmit={handleSubmit} noValidate>
-                        <Input type="file" name="file" label="ფაილი" onChange={changeHandler}  data="" val={validation.file}/>
+                        <Input type="file" name="file" label="ფაილი" onChange={changeHandler}  data="" val={validation.file} image={formDatComp.file}/>
                         <Input type="text" name="compName" label="ლეპტოპის სახელი" inputvalue={formDatComp.compName} onChange={changeHandler} data="" com="brand" blur={hanldeFocus} focused={focuse.compName}/>
                         <Input type="select" name="brands" label="ლეპტოპის ბრენდი" inputvalue={formDatComp.brands} onChange={changeHandler} data={brands} blur={hanldeFocus} focused={focuse.brands}/>
                         <hr className="hr"/>
