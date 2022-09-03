@@ -19,7 +19,7 @@ input::-webkit-calendar-picker-indicator{
 
 .register_comp{
     margin: auto;
-    width: 64%;
+    width: 55%;
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;

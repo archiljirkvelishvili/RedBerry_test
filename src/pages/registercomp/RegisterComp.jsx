@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {Link} from "react-router-dom"
 import {useNavigate} from "react-router-dom"
 
@@ -12,11 +12,11 @@ import back_img from "../../assets/back_click.png"
 
 export default function RegisterComp(){
     const navigateComp = useNavigate()
-    const [formDatComp, setFormDataComp] = useState({file: "false", compName: "", brands: "", cpus: "", cpuCores: "", cpuThread: "", ram: "", memoType: "false", conditions: "false", date: "", price: ""})
+    const [formDatComp, setFormDataComp] = useState(JSON.parse(localStorage.getItem("formDatComp")) ||{file: "false", compName: "", brands: "", cpus: "", cpuCores: "", cpuThread: "", ram: "", memoType: "false", conditions: "false", date: undefined, price: ""})
     const [focuse, setFocuse] = useState({file: "false", compName: "false", brands: "false", cpus: "false", cpuCores: "false", cpuThread: "false", ram: "false", memoType: "false", conditions: "false", price: "false"})
     const {brands, cpus} = useFetch()
     const [validation, setValidation] = useState({memoType:"false", conditions:"fasle", file:"false"})
-    console.log(formDatComp.file)
+
     
     function changeHandler(e){
         // e.preventDefault()
@@ -31,7 +31,11 @@ export default function RegisterComp(){
         setFocuse(prev => ({...prev, [e.target.name]: "true"}))
     }
 
- 
+
+    useEffect(() => {
+        localStorage.setItem("formDatComp",JSON.stringify(formDatComp))
+        // localStorage.clear()
+    },[formDatComp])
 
     function handleSubmit(e){
         e.preventDefault()
@@ -53,6 +57,9 @@ export default function RegisterComp(){
             setValidation(prev => ({...prev, file: "true"}))
         }
 
+        if(!Object.values(formDatComp).includes("") && !Object.values(formDatComp).includes("false")){
+            localStorage.clear()
+        }
 
     }
     

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {useNavigate} from "react-router-dom"
 
 import Input from "../../components/Input"
@@ -10,9 +10,10 @@ import back_img from "../../assets/back_click.png"
 
 export default function RegisterPerson(){
     const navigate = useNavigate()
-    const [formData, setFormData] = useState({name: "", surname: "", email: "", tel: "", teams: "", positions: ""})
+    const [formData, setFormData] = useState(JSON.parse(localStorage.getItem("formData")) || {name: "", surname: "", email: "", tel: "", teams: "", positions: ""})
     const [focuse, setFocuse] = useState({name: "false", surname: "false", email: "false", tel: "false", teams: "false", positions: "false"})
-    const  {teams, positions} = useFetch()
+    const {teams, positions} = useFetch()
+    
     function hanldeFocus(e){
         e.preventDefault()
         setFocuse(prev => ({...prev, [e.target.name]: "true"}))
@@ -22,17 +23,25 @@ export default function RegisterPerson(){
         e.preventDefault()
         setFormData(prev => ({...prev, [e.target.name]: e.target.value}))
     }
-
+    
     function handleSubmit(e){
         e.preventDefault()
         for (const value of Object.entries(focuse)){
         if(value[1] === "false")
             setFocuse(prev => ({...prev, [value[0]]: "true"}))
         }
-        console.log(e)
     }
 
+    function nextPage(){
+        if(!Object.values(formData).includes("")){
+            navigate("/registercomp")
+        }
+    }
 
+    useEffect(() => {
+        localStorage.setItem("formData",JSON.stringify(formData))
+    },[formData])
+ 
     return(
         <div className="register_person_wrapper">
             <img src={back_img} className="back_click" onClick={() => navigate("/")} alt="back"/>
@@ -46,7 +55,7 @@ export default function RegisterPerson(){
                         {positions && <Input type="select" name="positions" label="პოზიცია" inputvalue={formData.positions} onChange={changeHandler} data={positions} blur={hanldeFocus} focused={focuse.positions}/>}
                         <Input type="email" name="email" label="მეილი" inputvalue={formData.email} onChange={changeHandler} data="" blur={hanldeFocus} focused={focuse.email}/>
                         <Input type="tel" name="tel" label="ტელეფონის ნომერი" inputvalue={formData.tel} onChange={changeHandler} data="" blur={hanldeFocus} focused={focuse.tel}/>
-                        <button className="form_button"> შემდეგი </button>
+                        <button className="form_button" onClick={nextPage}> შემდეგი </button>
                     </form>
                 </main>
                 <Footer />
@@ -55,4 +64,3 @@ export default function RegisterPerson(){
     )
 }
 
-// onClick={() => navigate("/registercomp")}
