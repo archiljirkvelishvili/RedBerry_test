@@ -12,38 +12,16 @@ import back_img from "../../assets/back_click.png"
 
 export default function RegisterComp(){
     const navigateComp = useNavigate()
-    const [formDatComp, setFormDataComp] = useState(JSON.parse(localStorage.getItem("formDatComp")) ||{file: "false", compName: "", brands: "", cpus: "", cpuCores: "", cpuThread: "", ram: "", memoType: "false", conditions: "false", date: undefined, price: ""})
+    const [formDatComp, setFormDataComp] = useState(JSON.parse(localStorage.getItem("formDatComp")) ||{file: "false", compName: "", brands: "", cpus: "", cpuCores: "", cpuThread: "", ram: "", memoType: "false", conditions: "false", date: "1010-10-10", price: ""})
     const [focuse, setFocuse] = useState({file: "false", compName: "false", brands: "false", cpus: "false", cpuCores: "false", cpuThread: "false", ram: "false", memoType: "false", conditions: "false", price: "false"})
     const {brands, cpus, teams, positions} = useFetch()
     const [validation, setValidation] = useState({memoType:"false", conditions:"fasle", file:"false"})
-    const haha = new FormData()
-    haha.append("laptop_image", "achiko");
+    const [img, setImg] = useState(localStorage.getItem("img") || "")
+
     function changeHandler(e){
         (e.target.name==="memoType" || e.target.name==="conditions" || e.target.name==="file") && setValidation(prev => ({...prev, [e.target.name]: "false"}))
-        e.target.name!=="file" ? setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.value})) : fileloader(e.target.files[0])
-        
-        
-    }
-    console.log(haha)
-
-    const fileloader = async (a) => {
-        const base64 = await convertTo64(a)
-        setFormDataComp(prev => ({...prev, file: base64}))
-    }
-
-
-    function convertTo64(f){
-        return new Promise((resolve, reject) =>{
-            const fileReader = new FileReader()
-            fileReader.readAsDataURL(f) 
-
-            fileReader.onload = () => {
-                resolve(fileReader.result)
-            }
-            fileReader.onerror =(error) => {
-                reject(error)
-            }
-        }) 
+        e.target.name!=="file" ? setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.value})) : setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.files[0]}))
+        e.target.name ==="file" && setImg(URL.createObjectURL(e.target.files[0]));        
     }
 
     function hanldeFocus(e){
@@ -54,8 +32,8 @@ export default function RegisterComp(){
 
     useEffect(() => {
         localStorage.setItem("formDatComp",JSON.stringify(formDatComp))
-        // localStorage.clear()
-    },[formDatComp])
+        localStorage.setItem("img", img)
+    },[formDatComp, img])
 
 
     
@@ -80,19 +58,7 @@ export default function RegisterComp(){
             setValidation(prev => ({...prev, file: "true"}))
         }
 
-        
-
-      function sendData(data){
-            const formData = new FormData()
-            
-            
-                formData.append("image", formDatComp.file)
-            
-            
-            return formData
-        }
-
-        
+       
         if(!Object.values(formDatComp).includes("") && !Object.values(formDatComp).includes("false")){
             const dataFromComp = localStorage.getItem('formData')
             const dataFromPerson = localStorage.getItem('formDatComp')
@@ -107,7 +73,7 @@ export default function RegisterComp(){
                 email: allData.email,
                 token: '06bde5318725fe9738dc516b230878fd',
                 laptop_name: allData.compName,
-                laptop_image: allData.file,
+                laptop_image: formDatComp.file,
                 laptop_brand_id: brands && brands.data.filter(item => item.name===allData.brands)[0].id,
                 laptop_cpu: allData.cpus,
                 laptop_cpu_cores: allData.cpuCores,
@@ -118,29 +84,27 @@ export default function RegisterComp(){
                 laptop_purchase_date: allData.date,
                 laptop_price: allData.price
             }
-            console.log(allData, post)
-            // const a = sendData(post)
 
-
-            // const formData = new FormData()
+            const formData = new FormData()
             
+            for (const item in post){
+                formData.append(`${item}`, post[item],)
+            }
             
-            // formData.append("laptop_image", allData.file,)
-
-
-
             try{
                 fetch('https://pcfy.redberryinternship.ge/api/laptop/create', {
                     method: "POST",
-                    // body: haha,
-                    headers: { "Content-Type": "application/json"}, 
-                    body: JSON.stringify(post)
+                    body: formData
                 })
+
+                
+                navigateComp("/success")
             }catch(e){
                 throw e.message;
             }
   
-            // localStorage.clear()
+            localStorage.clear()
+
         }
         
     }
@@ -153,7 +117,7 @@ export default function RegisterComp(){
                 <Header page="comp"/>
                 <main className="register_comp_main">
                     <form className="register_comp_form" onSubmit={handleSubmit} noValidate>
-                        <Input type="file" name="file" label="ფაილი" onChange={changeHandler}  data="" val={validation.file} image={formDatComp.file}/>
+                        <Input type="file" name="file" label="ფაილი" onChange={changeHandler}  data="" val={validation.file} image={img}/>
                         <Input type="text" name="compName" label="ლეპტოპის სახელი" inputvalue={formDatComp.compName} onChange={changeHandler} data="" com="brand" blur={hanldeFocus} focused={focuse.compName}/>
                         <Input type="select" name="brands" label="ლეპტოპის ბრენდი" inputvalue={formDatComp.brands} onChange={changeHandler} data={brands} blur={hanldeFocus} focused={focuse.brands}/>
                         <hr className="hr"/>
@@ -175,8 +139,3 @@ export default function RegisterComp(){
         </div>
     )
 }
-
-
-
-
-// headers: {  "Content-Type": "multipart/form-data"}, "Content-Type": "application/json"
