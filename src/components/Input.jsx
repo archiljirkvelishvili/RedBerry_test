@@ -117,11 +117,17 @@ export default function Input(props){
             <div className={`radiowraper_${props.name}`}>
                 <p className={props.val==="true" ? `${props.name}_radio_val` : 'valid'}>{props.label} </p> 
                 <div className={props.name}>
-                    {radios.memoType.map(item => (
+                    {props.name ==="memoType" ? 
+                    radios.memoType.map(item => (
                         <React.Fragment key={item}>
                             <input type={props.type} checked ={props.inputvalue=== item}  onChange={props.onChange} name={props.name} id={props.name} value={item}  required/>
                             <label className="label_radio" htmlFor={props.name}>{item}</label>
-                        </React.Fragment>
+                        </React.Fragment>))
+                    :  radios.condition.map(item => (
+                        <React.Fragment key={item}>
+                            <input type={props.type} checked ={props.inputvalue=== item}  onChange={props.onChange} name={props.name} id={props.name} value={item}  required/>
+                            <label className="label_radio" htmlFor={props.name}>{item}</label>
+                        </React.Fragment>   
                     ))}
                 </div> 
                 <p className="comment"></p>

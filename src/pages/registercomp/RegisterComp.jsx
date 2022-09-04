@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import {Link} from "react-router-dom"
 import {useNavigate} from "react-router-dom"
 
-import useFetch from "../../Hooks/useFetch";
+import useFetch from "../../Hooks/useFetch"
 import Header from"../../components/Header"
 import Footer from"../../components/Footer"
-import Input from "../../components/Input";
+import Input from "../../components/Input"
 import "./registercomp.css"
 import back_img from "../../assets/back_click.png"
 
@@ -14,14 +14,17 @@ export default function RegisterComp(){
     const navigateComp = useNavigate()
     const [formDatComp, setFormDataComp] = useState(JSON.parse(localStorage.getItem("formDatComp")) ||{file: "false", compName: "", brands: "", cpus: "", cpuCores: "", cpuThread: "", ram: "", memoType: "false", conditions: "false", date: undefined, price: ""})
     const [focuse, setFocuse] = useState({file: "false", compName: "false", brands: "false", cpus: "false", cpuCores: "false", cpuThread: "false", ram: "false", memoType: "false", conditions: "false", price: "false"})
-    const {brands, cpus} = useFetch()
+    const {brands, cpus, teams, positions} = useFetch()
     const [validation, setValidation] = useState({memoType:"false", conditions:"fasle", file:"false"})
-
-    console.log(formDatComp)
+    const haha = new FormData()
+    haha.append("laptop_image", "achiko");
     function changeHandler(e){
         (e.target.name==="memoType" || e.target.name==="conditions" || e.target.name==="file") && setValidation(prev => ({...prev, [e.target.name]: "false"}))
         e.target.name!=="file" ? setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.value})) : fileloader(e.target.files[0])
+        
+        
     }
+    console.log(haha)
 
     const fileloader = async (a) => {
         const base64 = await convertTo64(a)
@@ -40,8 +43,7 @@ export default function RegisterComp(){
             fileReader.onerror =(error) => {
                 reject(error)
             }
-        })
-        
+        }) 
     }
 
     function hanldeFocus(e){
@@ -78,10 +80,69 @@ export default function RegisterComp(){
             setValidation(prev => ({...prev, file: "true"}))
         }
 
-        if(!Object.values(formDatComp).includes("") && !Object.values(formDatComp).includes("false")){
-            localStorage.clear()
+        
+
+      function sendData(data){
+            const formData = new FormData()
+            
+            
+                formData.append("image", formDatComp.file)
+            
+            
+            return formData
         }
 
+        
+        if(!Object.values(formDatComp).includes("") && !Object.values(formDatComp).includes("false")){
+            const dataFromComp = localStorage.getItem('formData')
+            const dataFromPerson = localStorage.getItem('formDatComp')
+            const allData={...JSON.parse(dataFromComp), ...JSON.parse(dataFromPerson)}
+            
+            const post = {
+                name: allData.name,
+                surname: allData.surname,
+                team_id: teams && teams.data.filter(item => item.name===allData.teams)[0].id,
+                position_id: positions && positions.data.filter(item => item.name===allData.positions)[0].id,
+                phone_number: allData.tel,
+                email: allData.email,
+                token: '06bde5318725fe9738dc516b230878fd',
+                laptop_name: allData.compName,
+                laptop_image: allData.file,
+                laptop_brand_id: brands && brands.data.filter(item => item.name===allData.brands)[0].id,
+                laptop_cpu: allData.cpus,
+                laptop_cpu_cores: allData.cpuCores,
+                laptop_cpu_threads: allData.cpuThread,
+                laptop_ram: allData.ram,
+                laptop_hard_drive_type: allData.memoType,
+                laptop_state: allData.conditions === "ახალი" ? "new" : "used",
+                laptop_purchase_date: allData.date,
+                laptop_price: allData.price
+            }
+            console.log(allData, post)
+            // const a = sendData(post)
+
+
+            // const formData = new FormData()
+            
+            
+            // formData.append("laptop_image", allData.file,)
+
+
+
+            try{
+                fetch('https://pcfy.redberryinternship.ge/api/laptop/create', {
+                    method: "POST",
+                    // body: haha,
+                    headers: { "Content-Type": "application/json"}, 
+                    body: JSON.stringify(post)
+                })
+            }catch(e){
+                throw e.message;
+            }
+  
+            // localStorage.clear()
+        }
+        
     }
     
 
@@ -114,3 +175,8 @@ export default function RegisterComp(){
         </div>
     )
 }
+
+
+
+
+// headers: {  "Content-Type": "multipart/form-data"}, "Content-Type": "application/json"
