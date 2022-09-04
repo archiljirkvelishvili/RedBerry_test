@@ -28,6 +28,12 @@
     height: 11vh;
     grid-column-gap: 10%;
 }
+.header_phone_1{
+    display: none;
+}
+.header_phone_2{
+    display: none;
+}
 .active{
     justify-self: end;
     font-size: 17px;
@@ -44,7 +50,9 @@
     border-top: 2px solid black
 
 }
-
+.back_click_phone{
+    display: none;
+ }
 
 .inctive{
     justify-self: start;
@@ -178,6 +186,14 @@ form button{
     margin-right: 14px;
     font-size: 16px;
 }
+
+form button:hover{
+    background-color: #317AD0;
+}
+
+form button:focus{
+    background-color: #1A5DAB;
+}
 form button:hover{
     cursor: pointer;
 }
@@ -229,4 +245,51 @@ input:invalid[focused="true"][name="tel"] {
 
 select:invalid[focused="true"]{
     border: 1px solid red;
+}
+
+@media only screen and (max-width: 390px){
+    .register_person{
+        width: 100%;
+    }
+
+    .register_person_main {
+        border-radius: 0px;
+        padding: 0 0 0 0;
+    }
+    .register_person_form{
+        grid-template-columns: 1fr;
+        width: 100%;
+        grid-template-areas: 
+            "name  "
+            "surname "
+            "teams "
+            "positions "
+            "email  "
+            "tel  "
+            " button";
+        grid-template-rows: repeat(6, 100px);
+        padding-bottom: 30px;
+    }
+    .header{
+        display: none;
+    }
+    .header_phone_1{
+        display: block;
+        display: grid;
+        justify-items: center;
+        align-items: end;
+        height: 80px;
+    }
+
+    .footer_logo{
+        display: none;
+    }
+    .register_person_wrapper .back_click_phone{
+        display: block;
+        width: 10px;
+        height: 15px;
+        position: absolute;
+        top: 35px;
+        left: 20px;
+    }
 }

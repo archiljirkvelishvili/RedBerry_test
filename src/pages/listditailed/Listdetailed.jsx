@@ -2,23 +2,22 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router-dom"
 
 import back_img from "../../assets/back_click.png"
+import back_img_phone from "../../assets/back_click_phone.png"
 import "./listdetailed.css"
-import compdet from "../../assets/compdet.png"
 import useFetch from "../../Hooks/useFetch";
 
 export default function ListDetailed(props){
     const navigateDet = useNavigate()
     const { state } =useLocation()
     const { teams, positions, brands, det} = useFetch(state.comp) 
-    console.log(brands.data)
-    console.log(det)
     return(
     det &&  (  
         <div className="details_wrapper">
             <img src={back_img} className="back_click" alt="back" onClick={() => navigateDet("/list")}/>
+            <img src={back_img_phone} className="back_click_phone" alt="back" onClick={() => navigateDet("/list")}/>
             <h1>ლეპტოპის ინფო</h1>
             <div className="list_wrappers">
-                <img src={compdet} alt="comp"/>
+                <img src={`https://pcfy.redberryinternship.ge${det.data.laptop.image}`} alt="comp"/>
                 <div className="first_list">
                     <p className="title">სახელი: </p>
                     <p className="api">{det.data.user.name} {det.data.user.surname} </p>
@@ -33,7 +32,6 @@ export default function ListDetailed(props){
                 </div>
                 
             </div>
-
             <hr/>
             <div className="list_wrappers">
                 <div className="second_list">
@@ -57,7 +55,6 @@ export default function ListDetailed(props){
                 </div>
 
             </div>
-
             <hr/>
             <div className="list_wrappers">
                 <div className="third_list">

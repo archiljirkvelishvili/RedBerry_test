@@ -17,6 +17,7 @@ input::-webkit-calendar-picker-indicator{
     left: 45px;
 }
 
+
 .register_comp{
     margin: auto;
     width: 55%;
@@ -33,6 +34,9 @@ input::-webkit-calendar-picker-indicator{
     align-items: center;
     height: 11vh;
     grid-column-gap: 10%;
+}
+.comp_header_phone_1{
+    display: none;
 }
 .active_comp{
     justify-self: start;
@@ -79,7 +83,6 @@ input::-webkit-calendar-picker-indicator{
             "date date date price price price"
             "conditions conditions conditions . . ."
             "back back . . save save"
-
 }
 
 .register_comp_form .file, .register_comp_form .file_val {
@@ -260,7 +263,13 @@ input[type='radio']:checked:before {
 
 
 .upload_info {
-text-align: center;
+    text-align: center;
+}
+.upload_info_phone{
+    display: none;
+}
+.camera_photo{
+    display: none;
 }
 
 
@@ -285,7 +294,13 @@ input[type='file'] {
     align-items: center;
     justify-items: center;
 }
+.file_button:hover{
+    background-color: #317AD0;
+}
 
+.file_button:focus{
+    background-color: #1A5DAB;
+}
 .file img{
     max-width: 100px;
     max-height: 100px;
@@ -296,7 +311,10 @@ input[type='file'] {
     color: #62A1EB;
     font-size: 14px;
 }
-
+input:focus{
+    background-color: rgba(43, 75, 242, 0.06);
+    border: 1.8px solid #6499FF;
+}
 input:invalid[focused="true"][name="compName"] ~ p{
     color: red
 }
@@ -355,3 +373,97 @@ input:invalid[focused="true"][name="price"] {
     padding-left: 20px;
 }
 
+@media only screen and (max-width: 390px){
+    .header_comp{
+        display: none;
+    }
+    .comp_header_phone_1{
+        display: block;
+        display: grid;
+        justify-items: center;
+        align-items: end;
+        height: 80px;
+    }
+    
+    .register_comp_wrapper .back_click_phone{
+        display: block;
+        width: 10px;
+        height: 15px;
+        position: absolute;
+        top: 35px;
+        left: 20px;
+    }
+
+    .footer_logo{
+        display: none;
+    }
+    .register_comp{
+        min-height: 100vh;
+        width: 100%;
+    
+    }
+    .register_comp_main{
+        width: 100%;
+        border-radius: 0px;
+        padding: 0 0 0 0;
+    }
+
+    .register_comp_form {
+        height: 100%;
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(14, auto);
+        align-content: space-between;
+        align-items: center;
+        padding-bottom: 30px;
+        grid-template-areas: 
+                "file file file file file file"
+                "compName compName compName compName compName compName "
+                "brands brands brands brands brands brands"
+                "hr hr hr hr hr hr"
+                "cpus cpus cpus  cpus cpus cpus "
+                "cpuCores cpuCores cpuCores cpuCores  cpuCores cpuCores" 
+                "cpuThread cpuThread cpuThread cpuThread cpuThread cpuThread"
+                "ram ram ram ram ram ram"
+                "memoType memoType memoType memoType memoType memoType"
+                "hr1 hr1 hr1 hr1 hr1 hr1"
+                "date date date date date date"
+                "price price price price price price"
+                "conditions conditions conditions conditions conditions conditions"
+                "back back . . save save"
+    }
+    .hr, .hr1{
+        width: 100%;
+        height: 10px;
+        background-color:whitesmoke;
+        color:  #C7C7C7;
+        border: none
+    }
+
+    .back{
+        padding-left: 20px;
+    }
+
+    .file{
+        justify-self: center;
+        width: 90%;
+    }
+
+    .upload_info {
+        display: none;
+    }
+
+    .file_button{
+        display: none;
+    }
+
+
+    .upload_info_phone{
+        text-align: center;
+        display: block;
+    }
+    .camera_photo{
+        display: block;
+    }
+}

@@ -1,6 +1,6 @@
 import React from "react"
 
-
+import camera from "../assets/camera_photo.png"
 
 export default function Input(props){
     const {data} = props.data
@@ -107,6 +107,10 @@ export default function Input(props){
             
         : props.type==="file" ?
             <div onChange={props.onDrop}  className={props.val==="true" ? `file_val` : props.name}>
+                <>
+                    <img className="camera_photo" src={camera} alt="camera" />
+                    <p className="upload_info_phone">ატვირთე ლეპტოპის ფოტო</p>
+                </>
                 <p className="upload_info">ჩააგდე ან ატვირთე ლეპტოპის ფოტო</p>
                 <input type={props.type} name={props.name} onChange={props.onChange} placeholder="ატვირთე" id={props.name} required/>           
                 <label htmlFor={props.name} className="file_button">ატვირთე</label>

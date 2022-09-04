@@ -17,6 +17,9 @@
     top: 20px;
     left: 45px;
 }
+.back_click_phone{
+    display: none;
+ }
 
 h1{
     padding-top: 60px;
@@ -71,4 +74,45 @@ h1{
     font-size: 14px;
     font-weight: 400;
     cursor: pointer;
+}
+
+@media only screen and (max-width: 390px){
+    .list_wrapper {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 90%;
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        row-gap: 80px;
+    }
+
+    .list {
+        margin-top: 80px;
+        grid-template-columns: 1fr;
+        grid-auto-rows: auto;
+        gap: 20px;
+     }
+
+     .list_item{
+        grid-template-rows: 115px;
+   
+    }
+    .list_item img {
+        height: 100%;
+    }
+    .back_click{
+        display: none;
+    }
+
+    .back_click_phone{
+        display: block;
+        width: 10px;
+        height: 15px;
+        position: absolute;
+        top: 45px;
+        left: 20px;
+    }
 }

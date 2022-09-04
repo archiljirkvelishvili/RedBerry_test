@@ -8,6 +8,7 @@ import Footer from"../../components/Footer"
 import Input from "../../components/Input"
 import "./registercomp.css"
 import back_img from "../../assets/back_click.png"
+import back_img_phone from "../../assets/back_click_phone.png"
 
 
 export default function RegisterComp(){
@@ -113,6 +114,7 @@ export default function RegisterComp(){
     return(
         <div className="register_comp_wrapper">
             <img src={back_img} className="back_click" onClick={() => navigateComp("/registerperson")} alt="back"/>
+            <img src={back_img_phone} className="back_click_phone" alt="back" onClick={() => navigateComp("/registerperson")}/>
             <div className="register_comp">
                 <Header page="comp"/>
                 <main className="register_comp_main">

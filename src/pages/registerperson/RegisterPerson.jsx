@@ -7,6 +7,7 @@ import Footer from"../../components/Footer"
 import useFetch from "../../Hooks/useFetch"
 import "./registerperson.css"
 import back_img from "../../assets/back_click.png"
+import back_img_phone from "../../assets/back_click_phone.png"
 
 export default function RegisterPerson(){
     const navigate = useNavigate()
@@ -45,6 +46,7 @@ export default function RegisterPerson(){
     return(
         <div className="register_person_wrapper">
             <img src={back_img} className="back_click" onClick={() => navigate("/")} alt="back"/>
+            <img src={back_img_phone} className="back_click_phone" alt="back" onClick={() => navigate("/")}/>
 <           div className="register_person">
                 <Header page="person" />
                 <main className="register_person_main">

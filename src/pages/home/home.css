@@ -5,7 +5,7 @@
 .home_page {
     font-family: 'HelveticaNeue', Arial, sans-serif;
     margin: auto;
-    width: 780px;
+    width: 60%;
     height: 100vh;
     display: grid;
     grid-template-rows: repeat(4, 1fr);
@@ -18,9 +18,13 @@
     width: 112px;
     height: 18px;
 }
-.img {
-    width: 780px;
-    height: 480px;
+.img_desc {
+    max-width: 70%;
+    max-height: 100%;
+}
+
+.img_phone {
+    display: none;
 }
 .button {
     text-decoration: none;
@@ -34,6 +38,14 @@
     align-items: center;
     justify-content: center;
 }
+
+.button:hover{
+    background-color: #317AD0;
+}
+
+.button:focus{
+    background-color: #1A5DAB;
+}
 .first{
     align-self: end;
 }
@@ -41,3 +53,24 @@
     align-self: start;
 }
 
+@media only screen and (max-width: 390px){
+
+    .img_desc {
+        display: none;
+    }
+    
+    .img_phone {
+        max-width: 100%;
+        display: block;
+    }
+
+
+    .home_page {
+        width: 90%;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+}

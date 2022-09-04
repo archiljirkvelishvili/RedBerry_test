@@ -8,6 +8,7 @@
     justify-items: center;
     align-items: center;
     row-gap: 50px;
+    font-weight: 500;
 }
 
 .back_click{
@@ -17,50 +18,52 @@
     top: 20px;
     left: 45px;
 }
+.back_click_phone{
+   display: none;
+}
 
 h1{
     padding-top: 60px;
-  
 }
 
 .list_wrappers {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(50%, 50% ));
     grid-template-rows: auto;
     justify-items: start;
 }
 
 
 .list_wrappers img{
-    max-height: 250px;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .first_list {
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(5, 40px);
+    grid-template-columns: repeat(2, minmax(50%, 50% ));
+    grid-template-rows: repeat(5, minmax(40px, auto));
     justify-content: center;
     align-content: center;
-  
-
 }
 
 .second_list{
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(4, 40px);
+    height: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, minmax(40px, auto));
 }
 
 .third_list{
     display: grid;
     width: 100%;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: repeat(2, 40px);
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, minmax(40px, auto));
 }
 
 .title {
@@ -70,9 +73,74 @@ h1{
 .api{
     color: #797979;
     font-size: 20px;
-    margin-left: 70px;
 }
+
 hr{
     color: #A5A5A5;
     width: 100%;
+}
+
+@media only screen and (max-width: 390px){
+    h1 {
+        display: none;
+    }
+
+    .details_wrapper {
+        width: 100%;
+        height: 100%;
+        margin-top: 80px;
+        display: grid;
+        grid-template-rows: repeat(6, auto);
+        grid-template-columns: 100%;
+        row-gap: 22px;
+        font-weight: 500; 
+        
+    }
+
+    .list_wrappers {
+        width: 90%;
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .title {
+        font-size: 14px;
+    }
+    
+    .api{
+        font-size: 14px;
+    }
+
+    .first_list {
+        margin-top: 20px;
+        grid-template-rows: repeat(5, minmax(25px, auto));
+    }
+    
+    .second_list{
+        grid-template-rows: repeat(4, minmax(25px, auto));
+        
+    }
+    
+    .third_list{
+        grid-template-rows: repeat(2, minmax(25px, auto));
+    }
+
+    hr{
+        width: 90%;
+    }
+
+    .back_click{
+        display: none;
+    }
+
+    .back_click_phone{
+        display: block;
+        width: 10px;
+        height: 15px;
+        position: absolute;
+        top: 45px;
+        left: 20px;
+    }
+    
+    
 }

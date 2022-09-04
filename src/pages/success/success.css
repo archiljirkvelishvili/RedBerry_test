@@ -25,7 +25,14 @@
     border: none;
     border-radius: 8px;
     color:#ffffff;
-    font-size: 16px;
+    font-size: 18px;
+}
+.success_button:hover{
+    background-color: #317AD0;
+}
+
+.success_button:focus{
+    background-color: #1A5DAB;
 }
 
 .success Link {
@@ -46,3 +53,35 @@
     height: 220px;
     margin-bottom: -40px;
  }
+ .success a {
+    text-decoration: none;
+    color: #0089A7;
+    font-size: 20px;
+
+ }
+
+ @media only screen and (max-width: 390px){
+
+    .success {
+        background-color: #ffffff;
+        width: 100%;
+        height: 100%;
+        grid-template-rows: 80% 10% 10%;
+    }
+
+    .success p {
+        display: none;
+     }
+
+     .success_button{
+        width: 290px;
+        height: 60px;
+    }
+
+     .success a {
+        align-self: start;
+     }
+
+    
+
+}
