@@ -34,7 +34,7 @@ export default function RegisterPerson(){
     }
 
     function nextPage(){
-        if(!Object.values(formData).includes("")){
+        if(!Object.values(focuse).includes("false")){
             navigate("/registercomp")
         }
     }
