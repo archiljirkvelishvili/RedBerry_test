@@ -68,12 +68,15 @@ h1{
     font-size: 15px;
 }
 
-.list_content a {
-    text-decoration: underline;
+.list_content button {
     color:  #4386A9;
+    background-color: #EAFAFF;
+    border: none;
     font-size: 14px;
     font-weight: 400;
+    text-decoration: underline;
     cursor: pointer;
+    justify-self: start;
 }
 
 @media only screen and (max-width: 390px){

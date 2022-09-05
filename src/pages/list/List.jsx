@@ -11,7 +11,7 @@ export default function List(props){
     const navigateList = useNavigate()
     const { list } =useFetch()
 
-    const body = list && list.data.map( (item, index) => (
+    const body = list && list.data.slice(4,).map( (item, index) => (
         
         <div className="list_item" key={index}>
             <img src={`https://pcfy.redberryinternship.ge${item.laptop.image}`} alt=""/>
@@ -19,7 +19,7 @@ export default function List(props){
                 
                 <p className="lsit_item_name">{`${item.user.name} ${item.user.surname}`}</p>
                 <p className="lsit_item_comp"> {`${item.laptop.name}`} </p>
-                <a  onClick={() => navigateList("/listdetailed", {state:{comp: item.laptop.id}})}>მეტის ნახვა</a>
+                <button  onClick={() => navigateList("/listdetailed", {state:{comp: item.laptop.id}})}>მეტის ნახვა</button>
             </div>
         </div>
     ))

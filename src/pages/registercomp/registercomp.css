@@ -85,6 +85,11 @@ input::-webkit-calendar-picker-indicator{
             "back back . . save save"
 }
 
+option:checked { 
+    background-color: #E7F0F8; 
+}
+
+
 .register_comp_form .file, .register_comp_form .file_val {
     grid-area: file
 }

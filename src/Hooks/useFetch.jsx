@@ -25,7 +25,7 @@ export default function useFetch(params){
         }catch(e){
             throw e;
         }
-    },[])
+    },[params])
 
     
 
