@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/RedBerry_test/static/css/main.b153d4a1.css",
-    "main.js": "/RedBerry_test/static/js/main.571a06d6.js",
-    "static/media/HelveticaNeue.ttc": "/RedBerry_test/static/media/HelveticaNeue.67d426c3bd180e2ea838.ttc",
-    "static/media/Home_img.png": "/RedBerry_test/static/media/Home_img.4997c71193b8a18ef7ae.png",
-    "static/media/home_img_phone.png": "/RedBerry_test/static/media/home_img_phone.c770f88da9cef0f7a047.png",
-    "index.html": "/RedBerry_test/index.html",
-    "main.b153d4a1.css.map": "/RedBerry_test/static/css/main.b153d4a1.css.map",
-    "main.571a06d6.js.map": "/RedBerry_test/static/js/main.571a06d6.js.map"
+    "main.css": "/static/css/main.d3679aad.css",
+    "main.js": "/static/js/main.6088a818.js",
+    "static/media/HelveticaNeue.ttc": "/static/media/HelveticaNeue.67d426c3bd180e2ea838.ttc",
+    "static/media/HelveticaNeue-01.ttf": "/static/media/HelveticaNeue-01.b517f267a7d151dceb59.ttf",
+    "static/media/Home_img.png": "/static/media/Home_img.4997c71193b8a18ef7ae.png",
+    "static/media/home_img_phone.png": "/static/media/home_img_phone.c770f88da9cef0f7a047.png",
+    "index.html": "/index.html",
+    "main.d3679aad.css.map": "/static/css/main.d3679aad.css.map",
+    "main.6088a818.js.map": "/static/js/main.6088a818.js.map"
   },
   "entrypoints": [
-    "static/css/main.b153d4a1.css",
-    "static/js/main.571a06d6.js"
+    "static/css/main.d3679aad.css",
+    "static/js/main.6088a818.js"
   ]
 }
