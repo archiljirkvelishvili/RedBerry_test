@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/RedBerry_test/static/css/main.84739e81.css",
-    "main.js": "/RedBerry_test/static/js/main.571a06d6.js",
+    "main.js": "/RedBerry_test/static/js/main.b4df8ad1.js",
     "static/media/HelveticaNeue.ttc": "/RedBerry_test/static/media/HelveticaNeue.67d426c3bd180e2ea838.ttc",
     "static/media/HelveticaNeue-01.ttf": "/RedBerry_test/static/media/HelveticaNeue-01.b517f267a7d151dceb59.ttf",
     "static/media/Home_img.png": "/RedBerry_test/static/media/Home_img.4997c71193b8a18ef7ae.png",
     "static/media/home_img_phone.png": "/RedBerry_test/static/media/home_img_phone.c770f88da9cef0f7a047.png",
     "index.html": "/RedBerry_test/index.html",
     "main.84739e81.css.map": "/RedBerry_test/static/css/main.84739e81.css.map",
-    "main.571a06d6.js.map": "/RedBerry_test/static/js/main.571a06d6.js.map"
+    "main.b4df8ad1.js.map": "/RedBerry_test/static/js/main.b4df8ad1.js.map"
   },
   "entrypoints": [
     "static/css/main.84739e81.css",
-    "static/js/main.571a06d6.js"
+    "static/js/main.b4df8ad1.js"
   ]
 }
