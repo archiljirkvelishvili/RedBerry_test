@@ -58,9 +58,18 @@ export default function RegisterComp(){
         if(formDatComp.file === "false"){
             setValidation(prev => ({...prev, file: "true"}))
         }
-
-       
-        if(!Object.values(formDatComp).includes("") && !Object.values(formDatComp).includes("false")){
+      
+        if(/^[a-zA-Z0-9!@#$%^&*()_+\-= ]*$/.test(formDatComp.compName) &&
+            formDatComp.brands.length >0 &&
+            formDatComp.cpus.length >0 &&
+            /^[0-9]*$/.test(formDatComp.cpuCores)&&
+            /^[0-9]*$/.test(formDatComp.cpuThread)&&
+            /^[0-9]*$/.test(formDatComp.ram)&&
+            formDatComp.memoType.length >0 &&
+            formDatComp.conditions.length >0 &&
+            /^[0-9]*$/.test(formDatComp.price)&&
+            formDatComp.file.name.length > 0              
+        ){
             const dataFromComp = localStorage.getItem('formData')
             const dataFromPerson = localStorage.getItem('formDatComp')
             const allData={...JSON.parse(dataFromComp), ...JSON.parse(dataFromPerson)}
@@ -91,23 +100,18 @@ export default function RegisterComp(){
             for (const item in post){
                 formData.append(`${item}`, post[item],)
             }
-            
+
             try{
                 fetch('https://pcfy.redberryinternship.ge/api/laptop/create', {
                     method: "POST",
                     body: formData
-                })
-
-                
+                })    
                 navigateComp("/success")
             }catch(e){
                 throw e.message;
             }
-  
-            localStorage.clear()
-
-        }
-        
+            // localStorage.clear()
+        }  
     }
     
     

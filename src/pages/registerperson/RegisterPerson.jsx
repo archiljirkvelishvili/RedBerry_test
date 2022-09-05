@@ -27,14 +27,15 @@ export default function RegisterPerson(){
     
     function handleSubmit(e){
         e.preventDefault()
-        for (const value of Object.entries(focuse)){
-        if(value[1] === "false")
-            setFocuse(prev => ({...prev, [value[0]]: "true"}))
-        }
     }
 
     function nextPage(){
-        if(!Object.values(focuse).includes("false")){
+        if(/^[აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ]{2,}$/.test(formData.name) &&
+            /^[აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ]{2,}$/.test(formData.surname) &&
+            /.+@redberry.ge/.test(formData.email) &&
+            /^^(\+?995)?(79\d{7}|5\d{8})$/.test(formData.tel) &&
+            formData.teams.length > 0 &&
+            formData.positions.length > 0){
             navigate("/registercomp")
         }
     }
