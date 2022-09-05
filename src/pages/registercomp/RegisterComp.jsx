@@ -13,15 +13,17 @@ import back_img_phone from "../../assets/back_click_phone.png"
 
 export default function RegisterComp(){
     const navigateComp = useNavigate()
-    const [formDatComp, setFormDataComp] = useState(JSON.parse(localStorage.getItem("formDatComp")) ||{file: "false", compName: "", brands: "", cpus: "", cpuCores: "", cpuThread: "", ram: "", memoType: "false", conditions: "false", date: "", price: ""})
+    const [formDatComp, setFormDataComp] = useState(JSON.parse(localStorage.getItem("formDatComp")) ||{compName: "", brands: "", cpus: "", cpuCores: "", cpuThread: "", ram: "", memoType: "false", conditions: "false", date: "", price: ""})
     const [focuse, setFocuse] = useState({file: "false", compName: "false", brands: "false", cpus: "false", cpuCores: "false", cpuThread: "false", ram: "false", memoType: "false", conditions: "false", price: "false"})
     const {brands, cpus, teams, positions} = useFetch()
     const [validation, setValidation] = useState({memoType:"false", conditions:"fasle", file:"false"})
-    const [img, setImg] = useState(localStorage.getItem("img") || "")
+    const [img, setImg] = useState("")
+    const [photo, setPhoto] =useState("false")
+
 
     function changeHandler(e){
         (e.target.name==="memoType" || e.target.name==="conditions" || e.target.name==="file") && setValidation(prev => ({...prev, [e.target.name]: "false"}))
-        e.target.name!=="file" ? setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.value})) : setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.files[0]}))
+        e.target.name!=="file" ? setFormDataComp(prev => ({...prev, [e.target.name]:  e.target.value})) : setPhoto(e.target.files[0])
         e.target.name ==="file" && setImg(URL.createObjectURL(e.target.files[0]));        
     }
 
@@ -33,11 +35,8 @@ export default function RegisterComp(){
 
     useEffect(() => {
         localStorage.setItem("formDatComp",JSON.stringify(formDatComp))
-        localStorage.setItem("img", img)
     },[formDatComp, img])
 
-
-    
 
     function handleSubmit(e){
         e.preventDefault()
@@ -55,20 +54,20 @@ export default function RegisterComp(){
             setValidation(prev => ({...prev, memoType: "true"}))
         }  
 
-        if(formDatComp.file === "false"){
+        if(photo=== "false"){
             setValidation(prev => ({...prev, file: "true"}))
         }
-      
+
         if(/^[a-zA-Z0-9!@#$%^&*()_+\-= ]*$/.test(formDatComp.compName) &&
             formDatComp.brands.length >0 &&
             formDatComp.cpus.length >0 &&
-            /^[0-9]*$/.test(formDatComp.cpuCores)&&
-            /^[0-9]*$/.test(formDatComp.cpuThread)&&
-            /^[0-9]*$/.test(formDatComp.ram)&&
+            /^[0-9]*$/.test(formDatComp.cpuCores)&&  formDatComp.cpuCores.length >0 &&
+            /^[0-9]*$/.test(formDatComp.cpuThread)&& formDatComp.cpuThread.length >0 &&
+            /^[0-9]*$/.test(formDatComp.ram)&& formDatComp.ram.length >0 &&
             formDatComp.memoType.length >0 &&
             formDatComp.conditions.length >0 &&
-            /^[0-9]*$/.test(formDatComp.price)&&
-            formDatComp.file.name.length > 0              
+            /^[0-9]*$/.test(formDatComp.price)&& formDatComp.price.length >0 &&
+            photo !== "false"          
         ){
             const dataFromComp = localStorage.getItem('formData')
             const dataFromPerson = localStorage.getItem('formDatComp')
@@ -83,7 +82,7 @@ export default function RegisterComp(){
                 email: allData.email,
                 token: '06bde5318725fe9738dc516b230878fd',
                 laptop_name: allData.compName,
-                laptop_image: formDatComp.file,
+                laptop_image: photo,
                 laptop_brand_id: brands && brands.data.filter(item => item.name===allData.brands)[0].id,
                 laptop_cpu: allData.cpus,
                 laptop_cpu_cores: allData.cpuCores,
@@ -94,9 +93,7 @@ export default function RegisterComp(){
                 laptop_purchase_date: allData.date,
                 laptop_price: allData.price
             }
-
             const formData = new FormData()
-            
             for (const item in post){
                 formData.append(`${item}`, post[item],)
             }
@@ -107,14 +104,12 @@ export default function RegisterComp(){
                     body: formData
                 })    
                 navigateComp("/success")
+                localStorage.clear()
             }catch(e){
                 throw e.message;
             }
-            // localStorage.clear()
         }  
-    }
-    
-    
+    }    
     return(
         <div className="register_comp_wrapper">
             <img src={back_img} className="back_click" onClick={() => navigateComp("/registerperson")} alt="back"/>

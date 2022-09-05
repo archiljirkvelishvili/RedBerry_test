@@ -33,7 +33,7 @@ export default function RegisterPerson(){
         if(/^[აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ]{2,}$/.test(formData.name) &&
             /^[აბგდევზთიკლმნოპჟრსტუფქღყშჩცძწჭხჯჰ]{2,}$/.test(formData.surname) &&
             /.+@redberry.ge/.test(formData.email) &&
-            /^^(\+?995)?(79\d{7}|5\d{8})$/.test(formData.tel) &&
+            /^(\+?995)?(79\d{7}|5\d{8})$/.test(formData.tel) &&
             formData.teams.length > 0 &&
             formData.positions.length > 0){
             navigate("/registercomp")

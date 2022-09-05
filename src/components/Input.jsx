@@ -91,7 +91,7 @@ export default function Input(props){
                     name={props.name} 
                     id={props.name} 
                     value={props.inputvalue} 
-                    pattern="^^(\+?995)?(79\d{7}|5\d{8})$"
+                    pattern="^(\+?995)?(79\d{7}|5\d{8})$"  
                     onBlur={props.blur}
                     focused={props.focused} 
                     required
