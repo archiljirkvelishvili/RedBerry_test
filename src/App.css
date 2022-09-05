@@ -1,5 +1,14 @@
+
+@font-face {
+    font-family: web;
+    src: url(./assets/fonts/HelveticaNeue-01.ttf)
+  }
+
+/* HelveticaNeue-01 */
 * {
     padding: 0px;
     margin:  0px;
     box-sizing: border-box;
+    font-family: web;
 }
+
