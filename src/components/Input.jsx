@@ -11,7 +11,7 @@ export default function Input(props){
         memoType: ["SSD", "HDD"],
         condition: ["ახალი", "მეორადი"]
     }
-
+    
     
     return(
         props.type==="text" ?
@@ -94,7 +94,8 @@ export default function Input(props){
                     pattern="^^(\+?995)?(79\d{7}|5\d{8})$"
                     onBlur={props.blur}
                     focused={props.focused} 
-                    required/>
+                    required
+                    placeholder="+995123123123"/>
                 <p className="comment">უნდა აკმაყოფილებდეს ქართული მობ-ნომრის ფორმატს</p>
             </div> 
         : props.type==="select" ?
@@ -140,7 +141,7 @@ export default function Input(props){
         :  props.type==="date" ?
         <div className={props.name}>
             <label className="label" htmlFor={props.name}>{props.label}</label>
-            <input  type={props.type}onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} placeholder="დდ / თთ / წწწწ" />
+            <input  type={props.type}onChange={props.onChange} name={props.name} id={props.name} value={props.inputvalue} placeholder="დდ/თთ/წწწწ" />
             <p className="comment"></p>
         </div>     
         :<p> ouch </p>

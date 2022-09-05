@@ -61,13 +61,13 @@ export default function ListDetailed(props){
                     <p className="title">ლეპტოპის მდგომარეობა: </p>
                     <p className="api">{det.data.laptop.state === "new" ? "ახალი" : "მეორადი"}</p>
                     <p className="title">ლეპტოპის ფასი: </p>
-                    <p className="api">{det.data.laptop.price}</p>
+                    <p className="api">{det.data.laptop.price} ₾</p>
 
                 </div>
             
                 <div className="third_list">
                     <p className="title">შეძენის რიცხვი: </p>
-                    <p className="api">{det.data.laptop.purchase_date}</p>
+                    <p className="api">{det.data.laptop.purchase_date === "2010-10-10" ? "" : det.data.laptop.purchase_date }</p>
 
                 </div>
             </div>

@@ -13,7 +13,7 @@ import back_img_phone from "../../assets/back_click_phone.png"
 
 export default function RegisterComp(){
     const navigateComp = useNavigate()
-    const [formDatComp, setFormDataComp] = useState(JSON.parse(localStorage.getItem("formDatComp")) ||{file: "false", compName: "", brands: "", cpus: "", cpuCores: "", cpuThread: "", ram: "", memoType: "false", conditions: "false", date: "1010-10-10", price: ""})
+    const [formDatComp, setFormDataComp] = useState(JSON.parse(localStorage.getItem("formDatComp")) ||{file: "false", compName: "", brands: "", cpus: "", cpuCores: "", cpuThread: "", ram: "", memoType: "false", conditions: "false", date: "", price: ""})
     const [focuse, setFocuse] = useState({file: "false", compName: "false", brands: "false", cpus: "false", cpuCores: "false", cpuThread: "false", ram: "false", memoType: "false", conditions: "false", price: "false"})
     const {brands, cpus, teams, positions} = useFetch()
     const [validation, setValidation] = useState({memoType:"false", conditions:"fasle", file:"false"})
@@ -110,7 +110,7 @@ export default function RegisterComp(){
         
     }
     
-
+    
     return(
         <div className="register_comp_wrapper">
             <img src={back_img} className="back_click" onClick={() => navigateComp("/registerperson")} alt="back"/>
